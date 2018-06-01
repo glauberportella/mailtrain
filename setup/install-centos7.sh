@@ -55,17 +55,17 @@ git clone git://github.com/Mailtrain-org/mailtrain.git .
 mysql -u mailtrain -p"$MYSQL_PASSWORD" mailtrain < setup/sql/mailtrain.sql
 
 mysql -u mailtrain -p"$MYSQL_PASSWORD" mailtrain <<EOT
-INSERT INTO \`settings\` (\`key\`, \`value\`) VALUES ('admin_email','admin@$HOSTNAME') ON DUPLICATE KEY UPDATE \`value\`='admin@$HOSTNAME';
-INSERT INTO \`settings\` (\`key\`, \`value\`) VALUES ('default_address','admin@$HOSTNAME') ON DUPLICATE KEY UPDATE \`value\`='admin@$HOSTNAME';
-INSERT INTO \`settings\` (\`key\`, \`value\`) VALUES ('smtp_hostname','localhost') ON DUPLICATE KEY UPDATE \`value\`='localhost';
-INSERT INTO \`settings\` (\`key\`, \`value\`) VALUES ('smtp_disable_auth','') ON DUPLICATE KEY UPDATE \`value\`='';
-INSERT INTO \`settings\` (\`key\`, \`value\`) VALUES ('smtp_user','mailtrain') ON DUPLICATE KEY UPDATE \`value\`='mailtrain';
-INSERT INTO \`settings\` (\`key\`, \`value\`) VALUES ('smtp_pass','$SMTP_PASS') ON DUPLICATE KEY UPDATE \`value\`='$SMTP_PASS';
-INSERT INTO \`settings\` (\`key\`, \`value\`) VALUES ('smtp_encryption','NONE') ON DUPLICATE KEY UPDATE \`value\`='NONE';
-INSERT INTO \`settings\` (\`key\`, \`value\`) VALUES ('smtp_port','2525') ON DUPLICATE KEY UPDATE \`value\`='2525';
-INSERT INTO \`settings\` (\`key\`, \`value\`) VALUES ('default_homepage','http://$HOSTNAME/') ON DUPLICATE KEY UPDATE \`value\`='http://$HOSTNAME/';
-INSERT INTO \`settings\` (\`key\`, \`value\`) VALUES ('service_url','http://$HOSTNAME/') ON DUPLICATE KEY UPDATE \`value\`='http://$HOSTNAME/';
-INSERT INTO \`settings\` (\`key\`, \`value\`) VALUES ('dkim_api_key','$DKIM_API_KEY') ON DUPLICATE KEY UPDATE \`value\`='$DKIM_API_KEY';
+INSERT INTO \`settings\` (\`key\`, \`value\`, \`saas_account_id\`) VALUES ('admin_email','admin@$HOSTNAME', 1) ON DUPLICATE KEY UPDATE \`value\`='admin@$HOSTNAME';
+INSERT INTO \`settings\` (\`key\`, \`value\`, \`saas_account_id\`) VALUES ('default_address','admin@$HOSTNAME', 1) ON DUPLICATE KEY UPDATE \`value\`='admin@$HOSTNAME';
+INSERT INTO \`settings\` (\`key\`, \`value\`, \`saas_account_id\`) VALUES ('smtp_hostname','localhost', 1) ON DUPLICATE KEY UPDATE \`value\`='localhost';
+INSERT INTO \`settings\` (\`key\`, \`value\`, \`saas_account_id\`) VALUES ('smtp_disable_auth','', 1) ON DUPLICATE KEY UPDATE \`value\`='';
+INSERT INTO \`settings\` (\`key\`, \`value\`, \`saas_account_id\`) VALUES ('smtp_user','mailtrain', 1) ON DUPLICATE KEY UPDATE \`value\`='mailtrain';
+INSERT INTO \`settings\` (\`key\`, \`value\`, \`saas_account_id\`) VALUES ('smtp_pass','$SMTP_PASS', 1) ON DUPLICATE KEY UPDATE \`value\`='$SMTP_PASS';
+INSERT INTO \`settings\` (\`key\`, \`value\`, \`saas_account_id\`) VALUES ('smtp_encryption','NONE', 1) ON DUPLICATE KEY UPDATE \`value\`='NONE';
+INSERT INTO \`settings\` (\`key\`, \`value\`, \`saas_account_id\`) VALUES ('smtp_port','2525', 1) ON DUPLICATE KEY UPDATE \`value\`='2525';
+INSERT INTO \`settings\` (\`key\`, \`value\`, \`saas_account_id\`) VALUES ('default_homepage','http://$HOSTNAME/', 1) ON DUPLICATE KEY UPDATE \`value\`='http://$HOSTNAME/';
+INSERT INTO \`settings\` (\`key\`, \`value\`, \`saas_account_id\`) VALUES ('service_url','http://$HOSTNAME/', 1) ON DUPLICATE KEY UPDATE \`value\`='http://$HOSTNAME/';
+INSERT INTO \`settings\` (\`key\`, \`value\`, \`saas_account_id\`) VALUES ('dkim_api_key','$DKIM_API_KEY', 1) ON DUPLICATE KEY UPDATE \`value\`='$DKIM_API_KEY';
 EOT
 
 # Add new user for the mailtrain daemon to run as
