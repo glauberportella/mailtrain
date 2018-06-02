@@ -27,7 +27,7 @@ INSERT INTO `saas_plan` VALUES
 
 CREATE TABLE `saas_account`(
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `sass_plan_id` int(11) unsigned NOT NULL,
+  `saas_plan_id` int(11) unsigned NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
   `salt` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
@@ -42,11 +42,11 @@ CREATE TABLE `saas_account`(
   `city` varchar(100),
   `state` varchar(100),
   `country` varchar(100),
-  `zipcode` varchar(20)
+  `zipcode` varchar(20),
   PRIMARY KEY (`id`),
   UNIQUE KEY `account_email` (`email`),
-  KEY `sass_plan`(`sass_plan_id`),
-  CONSTRAINT `account_plan_ibfk_1` FOREIGN KEY (`sass_plan_id`) REFERENCES `saas_plan` (`id`) ON DELETE RESTRICT
+  KEY `saas_plan`(`saas_plan_id`),
+  CONSTRAINT `account_plan_ibfk_1` FOREIGN KEY (`saas_plan_id`) REFERENCES `saas_plan` (`id`) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 INSERT INTO `saas_account`(`id`, `saas_plan_id`, `email`, `password`, `salt`) VALUES
 (@demo_account, @free_tier, @demo_account_email, @demo_account_pwd, @demo_salt);
